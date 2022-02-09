@@ -1,13 +1,15 @@
 resource "aws_iam_user" "bob" {
-  # Your code goes here
+  name = "bob"
   # Do not change below tags
   tags = local.task_tags
 }
 
 resource "aws_iam_group" "sysusers" {
-  # Your code goes here
+ name = "sysusers"
 }
 
 resource "aws_iam_group_membership" "members" {
-  # Your code goes here
+  name = "membership"
+  users = [aws_iam_user.bob.name]
+  group = aws_iam_group.sysusers.name
 }
